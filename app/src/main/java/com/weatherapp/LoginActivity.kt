@@ -102,6 +102,19 @@ class LoginActivity : ComponentActivity() {
                     Text("Limpar")
                 }
             }
+
+            Spacer(modifier = Modifier.size(16.dp))
+
+            Button(
+                onClick = {
+                    if (activity != null) {
+                        activity.startActivity(Intent(activity, RegisterActivity::class.java))
+                    }
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Registrar")
+            }
         }
     }
 }
