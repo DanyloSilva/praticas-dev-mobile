@@ -1,18 +1,12 @@
 package com.weatherapp
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
@@ -88,7 +82,12 @@ class LoginActivity : ComponentActivity() {
             ) {
                 Button(
                     onClick = {
-                        Toast.makeText(activity, "Login OK!", Toast.LENGTH_LONG).show()
+                        if (activity != null) {
+                            Toast.makeText(activity, "Login OK!", Toast.LENGTH_LONG).show()
+                            activity.startActivity(
+                                Intent(activity, MainActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                            )
+                        }
                     },
                     enabled = email.isNotEmpty() && password.isNotEmpty(),
                     modifier = Modifier.weight(1f)
